@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem } from '../redux/cartSlice';
 
 
-const ProductScreenButtons = ({ productData, navigation }) => {
+const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
 
     const dispatch = useDispatch();
 
@@ -18,7 +18,10 @@ const ProductScreenButtons = ({ productData, navigation }) => {
             dispatch(removeItem(productData));
             setIsExistInCart(false);
         } else {
-            dispatch(addItem(productData));
+
+            const updatedProductData = { ...productData, size: selectedSize };
+
+            dispatch(addItem(updatedProductData));
             setIsExistInCart(true);
         }
     }
@@ -27,7 +30,10 @@ const ProductScreenButtons = ({ productData, navigation }) => {
 
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (!data) {
-            dispatch(addItem(productData));
+
+            const updatedProductData = { ...productData, size: selectedSize };
+
+            dispatch(addItem(updatedProductData));
             setIsExistInCart(true);
         }
         navigation.navigate('Cart');

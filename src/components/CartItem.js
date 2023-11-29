@@ -10,7 +10,9 @@ const CartItem = ({ cartItem }) => {
     const dispatch = useDispatch();
 
     const handleIncrement = (productData) => {
-        dispatch(addItem(productData))
+
+        const updatedProductData = { ...productData, size: 9 };
+        dispatch(addItem(updatedProductData))
     }
 
     const handleDecrement = (productData) => {
@@ -22,12 +24,12 @@ const CartItem = ({ cartItem }) => {
             <View style={{ width: '100%', paddingVertical: 20, borderBottomWidth: 0.5, borderBottomColor: '#EBEBFB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image
-                        style={{ width: 50, height: 35, resizeMode: 'contain' }}
+                        style={{ width: 50, aspectRatio: 1 / 1, resizeMode: 'contain' }}
                         source={{ uri: cartItem?.products?.thumbnail }}
                     />
                     <View style={{ paddingLeft: 12 }}>
                         <Text style={{ fontSize: 12, width: 150, paddingBottom: 4 }}>{cartItem?.products?.title}</Text>
-                        <Text style={{ fontSize: 12 }}>$ {cartItem?.products?.price}</Text>
+                        <Text style={{ fontSize: 12 }}>Size: {cartItem?.products?.size} / Rs. {cartItem?.products?.price}</Text>
                     </View>
                 </View>
 

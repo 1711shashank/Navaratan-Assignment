@@ -4,10 +4,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { addItem, removeItem } from '../redux/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-
-
-
 const ProductCard = ({ productData }) => {
 
     const dispatch = useDispatch();
@@ -20,7 +16,10 @@ const ProductCard = ({ productData }) => {
             dispatch(removeItem(productData));
             setIsExistInCart(false);
         } else {
-            dispatch(addItem(productData));
+
+            const updatedProductData = { ...productData, size: 9 };
+
+            dispatch(addItem(updatedProductData));
             setIsExistInCart(true);
         }
     }
@@ -35,7 +34,7 @@ const ProductCard = ({ productData }) => {
             <View style={{ width: '100%', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
 
                 <View style={{ width: '80%', padding: 10 }}>
-                    <Text style={{ color: '#1E222B', fontWeight: 600 }}> $ {productData.price}</Text>
+                    <Text style={{ color: '#1E222B', fontWeight: 600 }}> Rs. {productData.price}</Text>
                     <Text style={{ color: '#616A7D', fontSize: 12 }} numberOfLines={2} ellipsizeMode="tail">{productData.title}</Text>
                 </View>
 
