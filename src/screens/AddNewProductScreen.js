@@ -130,7 +130,7 @@ const AddNewProductScreen = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.button, isFormDisabled && styles.disabledButton, { marginLeft: 5, backgroundColor: '#2A4BA0' }]}
+                    style={[styles.button, { marginLeft: 5, backgroundColor: '#2A4BA0' }, isFormDisabled && styles.disabledButton,]}
                     onPress={handleSaveProduct}
                     disabled={isFormDisabled}
                 >

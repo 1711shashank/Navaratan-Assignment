@@ -12,16 +12,16 @@ const EditProductScreen = ({ route, navigation }) => {
     const [productData, setProductData] = useState({
         title: productToEdit.title || '',
         description: productToEdit.description || '',
-        price: productToEdit.price || 0, 
-        discountPercentage: productToEdit.discountPercentage || 0, 
-        rating: productToEdit.rating || 0, 
-        stock: productToEdit.stock || 0, 
+        price: productToEdit.price || 0,
+        discountPercentage: productToEdit.discountPercentage || 0,
+        rating: productToEdit.rating || 0,
+        stock: productToEdit.stock || 0,
         brand: productToEdit.brand || '',
         category: productToEdit.category || '',
         thumbnail: productToEdit.thumbnail || '',
         images: (productToEdit.images || []).map(image => image || ''),
-      });
-      
+    });
+
     const isFormDisabled = Object.values(productData).some((value) => value === '') || productData.images.some((image) => image === '');
 
     const dispatch = useDispatch();
@@ -132,7 +132,7 @@ const EditProductScreen = ({ route, navigation }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.button, isFormDisabled && styles.disabledButton, { marginLeft: 5, backgroundColor: '#2A4BA0' }]}
+                    style={[styles.button, { marginLeft: 5, backgroundColor: '#2A4BA0' }, isFormDisabled && styles.disabledButton,]}
                     onPress={handleUpdate}
                     disabled={isFormDisabled}
                 >
