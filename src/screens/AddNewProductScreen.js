@@ -3,6 +3,7 @@ import { TouchableOpacity, ScrollView, Text, TextInput, StyleSheet } from 'react
 import { useDispatch } from 'react-redux';
 import { addNewProduct } from '../redux/productListSlice'
 import { View } from 'react-native';
+import { useEffect } from 'react';
 
 
 const AddNewProductScreen = ({ navigation }) => {
@@ -20,7 +21,7 @@ const AddNewProductScreen = ({ navigation }) => {
         images: ['', '', '', '', ''],
     });
 
-    const isFormDisabled = Object.values(productData).some((value) => value === '') || productData.images.some((image) => image === '');
+    const isFormDisabled = Object.values(productData).some((value) => value === '') && productData.images.some((image) => image === '');
 
     const dispatch = useDispatch();
     const handleSaveProduct = () => {
@@ -40,18 +41,24 @@ const AddNewProductScreen = ({ navigation }) => {
 
             <Text style={{ color: '#2A4BA0', fontSize: 22, fontWeight: 500, textAlign: 'center', paddingVertical: 10 }}> Enter Product Details </Text>
 
-            <Text style={styles.label}>Title</Text>
-            <TextInput
-                style={styles.input}
-                value={productData.title}
-                onChangeText={(text) => setProductData({ ...productData, title: text })}
-            />
-            <Text style={styles.label}>Description</Text>
-            <TextInput
-                style={styles.input}
-                value={productData.description}
-                onChangeText={(text) => setProductData({ ...productData, description: text })}
-            />
+            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                <View style={{ flex: 1, marginRight: 5 }}>
+                    <Text style={styles.label}>Title</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={productData.title}
+                        onChangeText={(text) => setProductData({ ...productData, title: text })}
+                    />
+                </View>
+                <View style={{ flex: 1, marginLeft: 5 }}>
+                    <Text style={styles.label}>Category</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={productData.category}
+                        onChangeText={(text) => setProductData({ ...productData, category: text })}
+                    />
+                </View>
+            </View>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <View style={{ flex: 1, marginRight: 5 }}>
@@ -85,21 +92,21 @@ const AddNewProductScreen = ({ navigation }) => {
 
                 </View>
                 <View style={{ flex: 1, marginLeft: 5 }}>
-                    <Text style={styles.label}>Category</Text>
+                    <Text style={styles.label}>Stock</Text>
                     <TextInput
                         style={styles.input}
-                        value={productData.category}
-                        onChangeText={(text) => setProductData({ ...productData, category: text })}
+                        keyboardType="numeric"
+                        value={String(productData.stock)}
+                        onChangeText={(text) => setProductData({ ...productData, stock: text })}
                     />
                 </View>
             </View>
 
-            <Text style={styles.label}>Stock</Text>
+            <Text style={styles.label}>Description</Text>
             <TextInput
                 style={styles.input}
-                keyboardType="numeric"
-                value={String(productData.stock)}
-                onChangeText={(text) => setProductData({ ...productData, stock: text })}
+                value={productData.description}
+                onChangeText={(text) => setProductData({ ...productData, description: text })}
             />
 
             <Text style={styles.label}>Thumbnail Image URL</Text>
@@ -152,7 +159,8 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 7,
-        padding: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
         borderRadius: 10,
         borderWidth: 1,
         marginVertical: 6,

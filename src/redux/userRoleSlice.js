@@ -3,11 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const userRoleSlice = createSlice({
     name: 'userRole',
     initialState: {
-        role: 'user'
+        role: ''
     },
     reducers: {
         userRole: (state, action) => {
             const email = action.payload;
+
             if (email === 'admin@gmail.com') {
                 state.role = 'admin';
             }

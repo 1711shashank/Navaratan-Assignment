@@ -2,13 +2,19 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import MenuButtons from '../components/MenuButtons';
 import { FontAwesome } from '@expo/vector-icons';
-
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { userRole } from '../redux/userRoleSlice';
 
 const ProfileScreen = ({ navigation }) => {
 
-    const userRole = useSelector((store) => store.userRole.role);
-    const userName = userRole === 'admin' ? 'Admin' : 'Kumar Shashank';
+    const role = useSelector((store) => store.userRole.role);
+    const userName = role === 'admin' ? 'Admin' : 'Kumar Shashank';
+
+    const dispatch = useDispatch();
+    const handleLogOut = () => {
+        dispatch(userRole('user'));
+        navigation.navigate('LoginScreen');
+    };
 
 
     return (
@@ -21,7 +27,7 @@ const ProfileScreen = ({ navigation }) => {
                 </View>
 
                 {
-                    userRole === 'admin' &&
+                    role === 'admin' &&
                     <>
                         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddNewProductScreen')}>
                             <Text style={{ color: 'grey' }}>Add New Product</Text>
@@ -31,7 +37,7 @@ const ProfileScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     </>
                 }
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LoginScreen')}>
+                <TouchableOpacity style={styles.button} onPress={handleLogOut}>
                     <Text style={{ color: 'grey' }}>Logout</Text>
                 </TouchableOpacity>
             </View>
