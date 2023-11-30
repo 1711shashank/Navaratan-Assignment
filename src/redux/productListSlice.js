@@ -12,6 +12,7 @@ const productListSlice = createSlice({
             state.items.push(productData);
         },
         updateProduct: (state, action) => {
+            
             const productData = action.payload;
             const index = state.items.findIndex((item) => item.id === productData.id);
 

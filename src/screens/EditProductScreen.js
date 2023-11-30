@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
+import { TouchableOpacity, ScrollView, View, Text, TextInput, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateProduct } from '../redux/productListSlice'
-import { View } from 'react-native';
 
 
 const EditProductScreen = ({ route, navigation }) => {
@@ -145,7 +144,7 @@ const EditProductScreen = ({ route, navigation }) => {
                     <Text style={{ color: '#fff' }}> UPDATE </Text>
                 </TouchableOpacity>
             </View>
-        </ScrollView >
+        </ScrollView>
     );
 };
 

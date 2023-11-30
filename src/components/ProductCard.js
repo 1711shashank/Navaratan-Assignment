@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
-import { addItem, removeItem } from '../redux/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem } from '../redux/cartSlice';
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const ProductCard = ({ productData }) => {
 

@@ -33,6 +33,7 @@ const Home = ({ navigation }) => {
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
+
                 <Text style={{ color: '#2A4BA0', fontSize: 30, padding: 10 }}> Recommended </Text>
                 <View style={{ width: '100%', justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'flex-start', paddingBottom: 80 }}>
 
@@ -44,10 +45,12 @@ const Home = ({ navigation }) => {
                             <ProductCard productData={item} />
                         </TouchableOpacity>
                     ))}
+
                 </View>
             </ScrollView>
 
             <MenuButtons activeTab='Home' navigation={navigation} />
+            
         </View>
     );
 };

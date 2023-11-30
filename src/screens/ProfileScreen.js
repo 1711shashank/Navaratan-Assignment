@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import MenuButtons from '../components/MenuButtons';
 import { FontAwesome } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { userRole } from '../redux/userRoleSlice';
 
 const ProfileScreen = ({ navigation }) => {
 
-    const role = useSelector((store) => store.userRole.role);
+    const [role, setRole] = useState('')
+
+    const getRole = async () => {
+        setRole(await AsyncStorage.getItem('role'));
+    }
+
+    useEffect(() => {
+        getRole();
+    }, [role])
+
     const userName = role === 'admin' ? 'Admin' : 'Kumar Shashank';
 
-    const dispatch = useDispatch();
-    const handleLogOut = () => {
-        dispatch(userRole('user'));
+    const handleLogOut = async () => {
+        await AsyncStorage.removeItem('role');
         navigation.navigate('LoginScreen');
     };
 

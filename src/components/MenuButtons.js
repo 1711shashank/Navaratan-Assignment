@@ -41,7 +41,6 @@ const MenuButtons = ({ activeTab, navigation }) => {
                             activeTab === 'Cart'
                                 ? <MaterialCommunityIcons name="shopping-outline" size={24} color="#E0B420" />
                                 : <MaterialCommunityIcons name="shopping-outline" size={24} color="#3E4554" />
-
                         }
                     </View>
                     <Text style={[styles.iconText, activeTab === 'Cart' && { display: 'none' }]}> Cart</Text>

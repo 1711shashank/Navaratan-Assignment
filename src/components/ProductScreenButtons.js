@@ -1,8 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem } from '../redux/cartSlice';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 
 const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
@@ -38,6 +37,7 @@ const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
         }
         navigation.navigate('Cart');
     }
+
     return (
         <View style={{ paddingHorizontal: 30, flexDirection: 'row', justifyContent: 'space-between' }}>
             <TouchableOpacity style={{ width: '46%', borderRadius: 20, height: 56, backgroundColor: '#FFF', borderColor: '2A4BA0', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }} onPress={handleCart}>

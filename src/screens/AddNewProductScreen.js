@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addNewProduct } from '../redux/productListSlice'
-import { View } from 'react-native';
-import { useEffect } from 'react';
+import { View, TouchableOpacity, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
 
 
 const AddNewProductScreen = ({ navigation }) => {

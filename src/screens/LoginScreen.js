@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Text } from 'react-native';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-import { userRole } from '../redux/userRoleSlice';
-import { useDispatch } from 'react-redux';
+import { View, TextInput, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }) => {
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const isLoginDisabled = email.trim() === '' || password.trim() === '';
 
 
-    const dispatch = useDispatch();
     const handleLogin = () => {
-        dispatch(userRole(email));
+        if (email === 'admin@gmail.com')
+            AsyncStorage.setItem('role', 'admin');
+        else
+            AsyncStorage.setItem('role', 'user');
+
         navigation.navigate('Home');
     };
 

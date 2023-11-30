@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
 
 const ProductScreenHeader = ({ navigation }) => {
 
@@ -19,7 +19,6 @@ const ProductScreenHeader = ({ navigation }) => {
                 </View>
             </TouchableOpacity>
         </View>
-
     )
 }
 

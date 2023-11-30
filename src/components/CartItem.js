@@ -10,7 +10,6 @@ const CartItem = ({ cartItem }) => {
     const dispatch = useDispatch();
 
     const handleIncrement = (productData) => {
-
         const updatedProductData = { ...productData, size: 9 };
         dispatch(addItem(updatedProductData))
     }
