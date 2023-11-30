@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { addNewProduct } from '../redux/productListSlice'
+import { updateProduct } from '../redux/productListSlice'
 import { View } from 'react-native';
 
 
-const AddNewProductScreen = ({ navigation }) => {
+const EditProductScreen = ({ route, navigation }) => {
+
+    const { productToEdit } = route.params;
 
     const [productData, setProductData] = useState({
-        title: '',
-        description: '',
-        price: '',
-        discountPercentage: '',
-        rating: '3',
-        stock: '',
-        brand: '',
-        category: '',
-        thumbnail: '',
-        images: ['', '', '', '', ''],
-    });
-
+        title: productToEdit.title || '',
+        description: productToEdit.description || '',
+        price: productToEdit.price || 0, 
+        discountPercentage: productToEdit.discountPercentage || 0, 
+        rating: productToEdit.rating || 0, 
+        stock: productToEdit.stock || 0, 
+        brand: productToEdit.brand || '',
+        category: productToEdit.category || '',
+        thumbnail: productToEdit.thumbnail || '',
+        images: (productToEdit.images || []).map(image => image || ''),
+      });
+      
     const isFormDisabled = Object.values(productData).some((value) => value === '') || productData.images.some((image) => image === '');
 
     const dispatch = useDispatch();
-    const handleSaveProduct = () => {
-        const updatedProductData = { ...productData, id: Math.floor(Math.random() * 10000000) };
-        dispatch(addNewProduct(updatedProductData));
+    const handleUpdate = () => {
+        const updatedProductData = { ...productData, id: productToEdit.id };
+        dispatch(updateProduct(updatedProductData));
         navigation.navigate('Home');
     };
 
@@ -131,17 +133,17 @@ const AddNewProductScreen = ({ navigation }) => {
 
                 <TouchableOpacity
                     style={[styles.button, isFormDisabled && styles.disabledButton, { marginLeft: 5, backgroundColor: '#2A4BA0' }]}
-                    onPress={handleSaveProduct}
+                    onPress={handleUpdate}
                     disabled={isFormDisabled}
                 >
-                    <Text style={{ color: '#fff' }}> ADD PRODUCT </Text>
+                    <Text style={{ color: '#fff' }}> UPDATE </Text>
                 </TouchableOpacity>
             </View>
         </ScrollView >
     );
 };
 
-export default AddNewProductScreen;
+export default EditProductScreen;
 
 const styles = StyleSheet.create({
     container: {

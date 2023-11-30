@@ -5,10 +5,6 @@ import MenuButtons from '../components/MenuButtons';
 const ProfileScreen = ({ navigation }) => {
     const userName = 'Test User';
 
-    const handleLogout = () => {
-        navigation.navigate('Login');
-    };
-
     return (
         <View style={{ flex: 1 }}>
 

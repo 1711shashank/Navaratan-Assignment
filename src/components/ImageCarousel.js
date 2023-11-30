@@ -7,7 +7,6 @@ import Swiper from 'react-native-swiper';
 const ImageCarousel = ({ images }) => {
 
     return (
-
         <View>
             <Swiper style={{ height: 350 }} loop={false}>
                 {images.map((image, index) => (

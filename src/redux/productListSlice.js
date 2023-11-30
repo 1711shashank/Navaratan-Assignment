@@ -11,13 +11,22 @@ const productListSlice = createSlice({
             const productData = action.payload;
             state.items.push(productData);
         },
-        removeProduct: (state, action) => {
+        updateProduct: (state, action) => {
             const productData = action.payload;
-            state.items = state.items.filter((item) => item.products.id !== productData.id);
+            const index = state.items.findIndex((item) => item.id === productData.id);
+
+            if (index !== -1) {
+                state.items[index] = action.payload;
+            }
+
+        },
+        removeProduct: (state, action) => {
+            const id = action.payload;
+            state.items = state.items.filter((item) => item.id !== id);
         }
     }
 })
 
-export const { addNewProduct, removeProduct } = productListSlice.actions;
+export const { addNewProduct, updateProduct, removeProduct } = productListSlice.actions;
 export default productListSlice.reducer;
 

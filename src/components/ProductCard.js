@@ -34,7 +34,7 @@ const ProductCard = ({ productData }) => {
             <View style={{ width: '100%', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
 
                 <View style={{ width: '80%', padding: 10 }}>
-                    <Text style={{ color: '#1E222B', fontWeight: 600 }}> Rs. {productData.price}</Text>
+                    <Text style={{ color: '#1E222B', fontWeight: 600 }}>Rs. {productData.price}</Text>
                     <Text style={{ color: '#616A7D', fontSize: 12 }} numberOfLines={2} ellipsizeMode="tail">{productData.title}</Text>
                 </View>
 
