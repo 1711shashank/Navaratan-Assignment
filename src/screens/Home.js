@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { initalProductList } from '../data/productList'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProductCard from '../components/ProductCard';
 import AddressInfo from '../components/AddressInfo';
@@ -11,9 +10,8 @@ import { useSelector } from 'react-redux';
 const Home = ({ navigation }) => {
 
     const cartItems = useSelector((store) => store.cart.items);
-
+    const productList = useSelector((store) => store.productList.items);
     const [searchQuery, setSearchQuery] = useState('');
-    const [productsData, setProductsData] = useState(initalProductList);
 
     return (
 
@@ -39,7 +37,7 @@ const Home = ({ navigation }) => {
                 <Text style={{ color: '#2A4BA0', fontSize: 30, padding: 10 }}> Recommended </Text>
                 <View style={{ width: '100%', justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'flex-start', paddingBottom: 80 }}>
 
-                    {productsData?.map((item) => (
+                    {productList?.map((item) => (
                         <TouchableOpacity
                             style={styles.producCard} key={item.id}
                             onPress={() => navigation.push('ProductScreen', { productData: item })}

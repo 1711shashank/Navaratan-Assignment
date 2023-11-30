@@ -16,7 +16,6 @@ const ProductScreen = ({ route, navigation }) => {
 
     const [selectedSize, setSelectedSize] = useState(9);
 
-
     return (
         <>
             <ScrollView>

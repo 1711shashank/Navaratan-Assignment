@@ -17,7 +17,6 @@ export const initalProductList = [
             "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/d/9/m/-original-imagqyxdbfdudukc.jpeg?q=70"
         ]
     },
-
     {
         id: 2,
         title: "RUNCRYPT M",
@@ -72,6 +71,4 @@ export const initalProductList = [
             "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/18576ca756264e579abbaf870081568e_9366/Questar_Shoes_White_HP2431_42_detail.jpg"
         ]
     },
-
-
 ]

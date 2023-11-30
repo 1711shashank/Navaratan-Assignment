@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        // height: 50,
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 16,
@@ -66,9 +65,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A4BA0',
     },
     disabledButton: {
-        backgroundColor: '#7F8DAA', // Change the color for the disabled state
+        backgroundColor: '#7F8DAA', 
         borderWidth: 0,
-
     },
 });
 
