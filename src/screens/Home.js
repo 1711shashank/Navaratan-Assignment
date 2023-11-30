@@ -18,7 +18,6 @@ const Home = ({ navigation }) => {
         <View style={{ flex: 1 }}>
 
             <View style={{ backgroundColor: '#2A4BA0', height: 250, paddingHorizontal: 20, paddingTop: 45 }}>
-
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                     <Text style={{ fontSize: 22, color: '#F8F9FB' }}> Hi, Rahul</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{ marginTop: 10, padding: 10, borderRadius: 50 }}>

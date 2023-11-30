@@ -112,7 +112,7 @@ const EditProductScreen = ({ route, navigation }) => {
             />
 
             {[0, 1, 2, 3].map((index) => (
-                <>
+                <View key={index}>
                     <Text style={styles.label}>Image {index + 1} URL</Text>
                     <TextInput
                         key={index}
@@ -120,7 +120,7 @@ const EditProductScreen = ({ route, navigation }) => {
                         value={productData.images[index]}
                         onChangeText={(text) => handleImageChange(index, text)}
                     />
-                </>
+                </View>
             ))}
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginVertical: 10 }}>

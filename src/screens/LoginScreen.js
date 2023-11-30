@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Text } from 'react-native';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { userRole } from '../redux/userRoleSlice';
+import { useDispatch } from 'react-redux';
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -9,12 +11,15 @@ const LoginScreen = ({ navigation }) => {
     const isLoginDisabled = email.trim() === '' || password.trim() === '';
 
 
+    const dispatch = useDispatch();
     const handleLogin = () => {
+        dispatch(userRole(email));
         navigation.navigate('Home');
     };
 
     return (
         <View style={styles.container}>
+            <Text style={{ color: '#2A4BA0', fontSize: 30, fontWeight: 700, textAlign: 'center', marginVertical: 50 }}> Welcome back</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -30,6 +35,7 @@ const LoginScreen = ({ navigation }) => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
             />
+            <Text style={{ textAlign: 'right', color: 'gray', paddingRight: 10, paddingTop: -15 }}> Forget your Password ?</Text>
             <TouchableOpacity
                 style={[styles.button, isLoginDisabled && styles.disabledButton]}
                 onPress={handleLogin}
@@ -46,18 +52,19 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 16,
+        paddingBottom: 150
 
     },
     input: {
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 16,
         padding: 12,
         borderRadius: 10,
         borderWidth: 1,
-        marginVertical: 10
+        marginVertical: 5
     },
     button: {
+        marginTop: 25,
         borderRadius: 10,
         borderWidth: 1,
         padding: 16,
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A4BA0',
     },
     disabledButton: {
-        backgroundColor: '#7F8DAA', 
+        backgroundColor: '#7F8DAA',
         borderWidth: 0,
     },
 });
