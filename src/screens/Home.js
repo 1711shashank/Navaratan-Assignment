@@ -19,7 +19,7 @@ const Home = ({ navigation }) => {
 
             <View style={{ backgroundColor: '#2A4BA0', height: 250, paddingHorizontal: 20, paddingTop: 45 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                    <Text style={{ fontSize: 22, color: '#F8F9FB' }}> Hi, Rahul</Text>
+                    <Text style={{ fontSize: 22, color: '#F8F9FB' }}> Hi, Shashank</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{ marginTop: 10, padding: 10, borderRadius: 50 }}>
                         <MaterialCommunityIcons name="shopping-outline" size={24} color="#F8F9FB" />
                         <View style={{ position: 'absolute', right: 0, borderRadius: 50, width: 24, aspectRatio: 1 / 1, backgroundColor: '#F9B023', alignItems: 'center', justifyContent: 'center' }}>
@@ -50,7 +50,7 @@ const Home = ({ navigation }) => {
             </ScrollView>
 
             <MenuButtons activeTab='Home' navigation={navigation} />
-            
+
         </View>
     );
 };
