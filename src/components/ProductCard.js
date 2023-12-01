@@ -21,7 +21,7 @@ const ProductCard = ({ productData }) => {
     }
 
     useEffect(() => {
-        
+
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (data) setIsExistInCart(true);
         else setIsExistInCart(false);
@@ -32,7 +32,7 @@ const ProductCard = ({ productData }) => {
     return (
         <>
             <Image
-                style={{ width: '100%', height: '60%', borderRadius: 10, resizeMode: 'contain' }}
+                style={{ width: '100%', height: '65%', borderRadius: 10, resizeMode: 'contain' }}
                 source={{ uri: productData.thumbnail }}
             />
 
@@ -43,7 +43,7 @@ const ProductCard = ({ productData }) => {
                     <Text style={{ color: '#616A7D', fontSize: 12 }} numberOfLines={2} ellipsizeMode="tail">{productData.title}</Text>
                 </View>
 
-                <TouchableOpacity onPress={handleAddCart} style={{ marginTop: 10, backgroundColor: '#2A4BA0', borderRadius: 50, padding: 5 }} >
+                <TouchableOpacity onPress={handleAddCart} style={{ marginTop: 10, backgroundColor: '#2A4BA0', borderRadius: 50, padding: 7, marginRight: 5 }} >
                     {isExistInCart
                         ? <AntDesign name="minus" size={20} color="#FFF" />
                         : <AntDesign name="plus" size={20} color="#FFF" />

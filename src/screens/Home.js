@@ -60,7 +60,7 @@ export default Home;
 const styles = StyleSheet.create({
     producCard: {
         width: '45%',
-        aspectRatio: 160 / 194,
+        aspectRatio: 160 / 184,
         margin: 8,
         backgroundColor: '#F8F9FB',
         padding: 10,
