@@ -1,7 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import { Entypo } from '@expo/vector-icons';
 import CartItem from '../components/CartItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItemFromCart } from '../redux/cartSlice';
+import { addToOrderList } from '../redux/orderHistoryListSlice';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 
@@ -15,6 +17,18 @@ const Cart = ({ navigation }) => {
         return total + (price * quantity);
     }, 0);
 
+    const dispatch = useDispatch();
+    const handleOrder = () => {
+
+        cartItems.map((item) => {
+            dispatch(addToOrderList(item.products));
+            dispatch(removeItemFromCart(item.products));
+        });
+
+        navigation.navigate('OrderHistoryScreen');
+
+    }
+
     return (
         <View style={styles.cartWrapper}>
 
@@ -27,7 +41,9 @@ const Cart = ({ navigation }) => {
 
             {
                 cartItems.map((cartItem, index) => (
-                    <CartItem cartItem={cartItem} key={index} />
+                    <View key={index} style={{ width: '100%' }}>
+                        <CartItem cartItem={cartItem} />
+                    </View>
                 ))
             }
 
@@ -39,19 +55,19 @@ const Cart = ({ navigation }) => {
                 </View>
                 <View style={styles.paymentCardRecordColumn}>
                     <Text style={{ color: '#616A7D' }}>Delivery</Text>
-                    <Text style={{ color: '#1E222B' }}>Rs. 2</Text>
+                    <Text style={{ color: '#1E222B' }}>Rs. 100</Text>
                 </View>
                 <View style={styles.paymentCardRecordColumn}>
                     <Text style={{ color: '#616A7D' }}>Total</Text>
-                    <Text style={{ color: '#1E222B', fontWeight: 500 }}>Rs. {totalPrice + 2}</Text>
+                    <Text style={{ color: '#1E222B', fontWeight: 500 }}>Rs. {totalPrice + 100}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.makePaymentButton}>
+                <TouchableOpacity style={styles.makePaymentButton} onPress={handleOrder}>
                     <Text style={{ color: '#FFF', fontSize: 14 }}>
                         Make Payment
                     </Text>
                 </TouchableOpacity>
-                
+
             </View>
         </View >
     )
@@ -66,7 +82,7 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         paddingTop: 50,
-        paddingHorizontal: 30
+        paddingHorizontal: 25,
     },
     paymentCard: {
         backgroundColor: '#F8F9FB',

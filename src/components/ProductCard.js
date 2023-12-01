@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem } from '../redux/cartSlice';
+import { addItemToCart, removeItemFromCart } from '../redux/cartSlice';
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const ProductCard = ({ productData }) => {
@@ -13,10 +13,10 @@ const ProductCard = ({ productData }) => {
     const handleAddCart = () => {
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (data) {
-            dispatch(removeItem(productData));
+            dispatch(removeItemFromCart(productData));
         } else {
             const updatedProductData = { ...productData, size: 9 };
-            dispatch(addItem(updatedProductData));
+            dispatch(addItemToCart(updatedProductData));
         }
     }
 

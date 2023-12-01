@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
 
 
 export default function App() {
@@ -54,6 +55,12 @@ export default function App() {
                     <Stack.Screen
                         name="ProductListScreen"
                         component={ProductListScreen}
+                        options={{ headerShown: false }}
+                    />
+
+                    <Stack.Screen
+                        name="OrderHistoryScreen"
+                        component={OrderHistoryScreen}
                         options={{ headerShown: false }}
                     />
 

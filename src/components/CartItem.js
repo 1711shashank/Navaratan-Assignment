@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux'
-import { addItem, reduceQuantity } from '../redux/cartSlice';
+import { addItemToCart, reduceQuantityFromCart } from '../redux/cartSlice';
 
 
 const CartItem = ({ cartItem }) => {
@@ -11,11 +11,11 @@ const CartItem = ({ cartItem }) => {
 
     const handleIncrement = (productData) => {
         const updatedProductData = { ...productData, size: 9 };
-        dispatch(addItem(updatedProductData))
+        dispatch(addItemToCart(updatedProductData))
     }
 
     const handleDecrement = (productData) => {
-        dispatch(reduceQuantity(productData))
+        dispatch(reduceQuantityFromCart(productData))
     }
 
     return (
@@ -32,7 +32,7 @@ const CartItem = ({ cartItem }) => {
                     </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
 
                     <TouchableOpacity onPress={() => handleDecrement(cartItem.products)} style={{ backgroundColor: '#F8F9FB', borderRadius: 50, marginRight: 10, padding: 10 }} >
                         <AntDesign name="minus" size={20} color="black" />

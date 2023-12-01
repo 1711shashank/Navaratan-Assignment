@@ -19,6 +19,7 @@ const ProfileScreen = ({ navigation }) => {
     const userName = role === 'admin' ? 'Admin' : 'Kumar Shashank';
 
     const handleLogOut = async () => {
+        
         await AsyncStorage.removeItem('role');
         navigation.navigate('LoginScreen');
     };
@@ -44,6 +45,15 @@ const ProfileScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     </>
                 }
+
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OrderHistoryScreen')}>
+                    <Text style={{ color: 'grey' }}>Order History</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Cart')}>
+                    <Text style={{ color: 'grey' }}>Cart</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.button} onPress={handleLogOut}>
                     <Text style={{ color: 'grey' }}>Logout</Text>
                 </TouchableOpacity>

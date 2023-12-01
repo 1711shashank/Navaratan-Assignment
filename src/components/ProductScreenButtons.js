@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem } from '../redux/cartSlice';
+import { addItemToCart, removeItemFromCart } from '../redux/cartSlice';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useEffect } from 'react';
 
@@ -15,10 +15,10 @@ const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
     const handleCart = () => {
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (data) {
-            dispatch(removeItem(productData));
+            dispatch(removeItemFromCart(productData));
         } else {
             const updatedProductData = { ...productData, size: selectedSize };
-            dispatch(addItem(updatedProductData));
+            dispatch(addItemToCart(updatedProductData));
         }
     }
 
@@ -27,7 +27,7 @@ const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (!data) {
             const updatedProductData = { ...productData, size: selectedSize };
-            dispatch(addItem(updatedProductData));
+            dispatch(addItemToCart(updatedProductData));
         }
         navigation.navigate('Cart');
     }
