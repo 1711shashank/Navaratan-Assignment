@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 
-const OrderHistoryList = ({ item }) => {
+const OrderHistoryList = ({ item, navigation }) => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingRight: 25 }}>
             <TouchableOpacity
                 key={item.id}
-                onPress={() => navigation.push('EditProductScreen', { productToEdit: item })}
+                onPress={() => navigation.push('ProductScreen', { productData: item })}
                 style={{ width: '100%', paddingVertical: 20, borderBottomWidth: 0.5, borderBottomColor: '#EBEBFB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
             >
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>

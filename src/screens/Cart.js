@@ -21,7 +21,14 @@ const Cart = ({ navigation }) => {
     const handleOrder = () => {
 
         cartItems.map((item) => {
-            dispatch(addToOrderList(item.products));
+
+            const timestamp = new Date().toISOString();
+            const updatedProducts = {
+                ...item.products,
+                timestamp: timestamp
+            };
+
+            dispatch(addToOrderList(updatedProducts));
             dispatch(removeItemFromCart(item.products));
         });
 
@@ -62,12 +69,15 @@ const Cart = ({ navigation }) => {
                     <Text style={{ color: '#1E222B', fontWeight: 500 }}>Rs. {totalPrice + 100}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.makePaymentButton} onPress={handleOrder}>
-                    <Text style={{ color: '#FFF', fontSize: 14 }}>
-                        Make Payment
-                    </Text>
-                </TouchableOpacity>
-
+                {cartItems.length > 0 ? (
+                    <TouchableOpacity style={styles.makePaymentButton} onPress={handleOrder}>
+                        <Text style={{ color: '#FFF', fontSize: 14 }}>Make Payment</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={[styles.makePaymentButton, { backgroundColor: '#B0B0B0' }]}>
+                        <Text style={{ color: '#FFF', fontSize: 14 }}>Cart is Empty</Text>
+                    </View>
+                )}
             </View>
         </View >
     )

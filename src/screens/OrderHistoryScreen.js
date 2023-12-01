@@ -19,15 +19,15 @@ const OrderHistoryScreen = ({ navigation }) => {
         <View style={{ flex: 1, paddingTop: 50, paddingHorizontal: 20 }}>
 
             <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-                <TouchableOpacity style={{ backgroundColor: '#F8F9FB', padding: 10, borderRadius: 50, marginRight: 20 }} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={{ backgroundColor: '#F8F9FB', padding: 10, borderRadius: 50, marginRight: 20 }} onPress={() => navigation.navigate('Home')}>
                     <Entypo name="chevron-small-left" size={24} color="#1E222B" />
                 </TouchableOpacity>
                 <Text style={{ color: '#2A4BA0', fontSize: 22, paddingVertical: 10 }}> Order History </Text>
             </View>
             {
                 orderHistoryList.map((item) => (
-                    <View key={item.id} >
-                        <OrderHistoryList item={item} handleDelete={handleDelete} />
+                    <View key={item.timestamp} >
+                        <OrderHistoryList item={item} handleDelete={handleDelete} navigation={navigation} />
                     </View>
                 ))
             }

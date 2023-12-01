@@ -11,10 +11,10 @@ export const initalProductList = [
         category: "Shoes",
         thumbnail: "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/d/9/m/-original-imagqyxdbfdudukc.jpeg?q=70",
         images: [
-            "https://rukminim2.flixcart.com/image/832/832/kg5fzww0-0/shoe/6/o/q/ew5539-adidas-cblack-ftwwht-gloora-original-imafwg6xmu74tjuq.jpeg?q=70",
-            "https://rukminim2.flixcart.com/image/832/832/kg5fzww0-0/shoe/e/w/z/ew5539-adidas-cblack-ftwwht-gloora-original-imafwg6xrdtchyxt.jpeg?q=70",
+            "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/d/9/m/-original-imagqyxdbfdudukc.jpeg?q=70",
             "https://rukminim2.flixcart.com/image/832/832/kg5fzww0-0/shoe/1/o/w/ew5539-adidas-cblack-ftwwht-gloora-original-imafwg6xcbhh5fwe.jpeg?q=70",
-            "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/d/9/m/-original-imagqyxdbfdudukc.jpeg?q=70"
+            "https://rukminim2.flixcart.com/image/832/832/kg5fzww0-0/shoe/6/o/q/ew5539-adidas-cblack-ftwwht-gloora-original-imafwg6xmu74tjuq.jpeg?q=70",
+            "https://rukminim2.flixcart.com/image/832/832/kg5fzww0-0/shoe/e/w/z/ew5539-adidas-cblack-ftwwht-gloora-original-imafwg6xrdtchyxt.jpeg?q=70"
         ]
     },
     {

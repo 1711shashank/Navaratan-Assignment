@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 
-const ProductList = ({ item, handleDelete }) => {
+const ProductList = ({ item, handleDelete, navigation }) => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingRight: 25 }}>
             <TouchableOpacity

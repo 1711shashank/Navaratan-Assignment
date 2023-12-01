@@ -35,7 +35,7 @@ const AddNewProductScreen = ({ navigation }) => {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView style={styles.container}>
 
             <Text style={{ color: '#2A4BA0', fontSize: 22, fontWeight: 500, textAlign: 'center', paddingVertical: 10 }}> Enter Product Details </Text>
 
@@ -115,7 +115,7 @@ const AddNewProductScreen = ({ navigation }) => {
             />
 
             {[0, 1, 2, 3].map((index) => (
-                <>
+                <View key={index}>
                     <Text style={styles.label}>Image {index + 1} URL</Text>
                     <TextInput
                         key={index}
@@ -123,7 +123,7 @@ const AddNewProductScreen = ({ navigation }) => {
                         value={productData.images[index]}
                         onChangeText={(text) => handleImageChange(index, text)}
                     />
-                </>
+                </View>
             ))}
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginVertical: 10 }}>
@@ -142,7 +142,7 @@ const AddNewProductScreen = ({ navigation }) => {
                     <Text style={{ color: '#fff' }}> ADD PRODUCT </Text>
                 </TouchableOpacity>
             </View>
-        </ScrollView >
+        </ScrollView>
     );
 };
 
@@ -151,7 +151,7 @@ export default AddNewProductScreen;
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        paddingTop: 50
+        paddingTop: 45
     },
     input: {
         borderColor: 'gray',

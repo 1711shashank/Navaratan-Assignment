@@ -26,7 +26,7 @@ const ProductListScreen = ({ navigation }) => {
             {
                 productList.map((item) => (
                     <View key={item.id} >
-                        <ProductList item={item} handleDelete={handleDelete} />
+                        <ProductList item={item} handleDelete={handleDelete} navigation={navigation}/>
                     </View>
                 ))
             }

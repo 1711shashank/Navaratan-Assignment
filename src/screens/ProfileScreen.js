@@ -22,6 +22,7 @@ const ProfileScreen = ({ navigation }) => {
         
         await AsyncStorage.removeItem('role');
         navigation.navigate('LoginScreen');
+        
     };
 
 
