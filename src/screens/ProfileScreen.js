@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import MenuButtons from '../components/MenuButtons';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Entypo } from '@expo/vector-icons';
+
 
 const ProfileScreen = ({ navigation }) => {
 
@@ -19,10 +20,10 @@ const ProfileScreen = ({ navigation }) => {
     const userName = role === 'admin' ? 'Admin' : 'Kumar Shashank';
 
     const handleLogOut = async () => {
-        
+
         await AsyncStorage.removeItem('role');
         navigation.navigate('LoginScreen');
-        
+
     };
 
 
@@ -30,7 +31,12 @@ const ProfileScreen = ({ navigation }) => {
         <View style={{ flex: 1 }}>
 
             <View style={styles.container}>
-                <View style={{ alignItems: 'center', paddingTop: 20 }}>
+
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <Entypo name="chevron-small-left" size={24} color="#1E222B" />
+                </TouchableOpacity>
+
+                <View style={{ alignItems: 'center', paddingTop: 0 }}>
                     <FontAwesome name="user-circle" size={130} color="#949494" />
                     <Text style={styles.text}>{userName}</Text>
                 </View>
@@ -70,7 +76,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        paddingTop: 70,
+        paddingTop: 55,
+    },
+    backButton: {
+        marginHorizontal: 10,
+        width: 45,
+        aspectRatio: 1 / 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#e0e0e0',
+        padding: 10, borderRadius: 50
     },
     text: {
         fontSize: 20,
