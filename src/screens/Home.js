@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProductCard from '../components/ProductCard';
@@ -12,6 +12,39 @@ const Home = ({ navigation }) => {
     const cartItems = useSelector((store) => store.cart.items);
     const productList = useSelector((store) => store.productList.items);
     const [searchQuery, setSearchQuery] = useState('');
+    const [filterDataBySearch, setFilterDataBySearch] = useState(productList);
+    const [timer, setTimer] = useState(false);
+
+
+    const searchBar = () => {
+
+        const filterData = productList.filter((item) => (
+            item.title?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+            item.brand?.toLowerCase().includes(searchQuery?.toLowerCase())
+        ));
+
+        setFilterDataBySearch(filterData);
+        setTimer(null);
+    }
+
+    useEffect(() => {
+        // Clear the previous timer
+        if (timer) clearTimeout(timer);
+
+        if (searchQuery !== '') {
+            const searchFn = setTimeout(() => {
+                searchBar();
+            }, 100);
+
+            setTimer(searchFn);
+        }
+        else setFilterDataBySearch(productList);
+
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
+
+    }, [searchQuery]);
 
     return (
 
@@ -32,12 +65,12 @@ const Home = ({ navigation }) => {
                 <AddressInfo />
             </View>
 
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ paddingLeft: 10, paddingTop: 10 }}>
 
-                <Text style={{ color: '#2A4BA0', fontSize: 30, padding: 10 }}> Recommended </Text>
-                <View style={{ width: '100%', justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'flex-start', paddingBottom: 80 }}>
+                <Text style={{ color: '#2A4BA0', fontSize: 30 }}> Recommended </Text>
+                <View style={{ width: '100%', justifyContent: 'flex-start', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'flex-start', paddingBottom: 90 }}>
 
-                    {productList?.map((item) => (
+                    {filterDataBySearch?.map((item) => (
                         <TouchableOpacity
                             style={styles.producCard} key={item.id}
                             onPress={() => navigation.push('ProductScreen', { productData: item })}

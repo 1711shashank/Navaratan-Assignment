@@ -71,4 +71,22 @@ export const initalProductList = [
             "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/18576ca756264e579abbaf870081568e_9366/Questar_Shoes_White_HP2431_42_detail.jpg"
         ]
     },
+    {
+        id: 5,
+        title: "Dummy Title",
+        description: "Vintage vibes with modern detailing. These adidas sneakers give you a retro sporty look without sacrificing comfort. Wear these running-inspired icons on those casual days when you want to get stuff done and look good doing it. Classic 3-Stripes and low-key graphics on the tongue and heel tab provide the finishing touches.",
+        price: 5599,
+        discountPercentage: 12.96,
+        rating: 4.69,
+        stock: 54,
+        brand: "ADIDAS",
+        category: "Sportswear",
+        thumbnail: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d56f34548cb34facb2ddaf8700810fde_9366/Questar_Shoes_White_HP2431_01_standard.jpg",
+        images: [
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d56f34548cb34facb2ddaf8700810fde_9366/Questar_Shoes_White_HP2431_01_standard.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1996570db6124112b8f4af870081368f_9366/Questar_Shoes_White_HP2431_04_standard.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6be8979f45904fdfbda0af8700814164_9366/Questar_Shoes_White_HP2431_05_standard.jpg",
+            "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/18576ca756264e579abbaf870081568e_9366/Questar_Shoes_White_HP2431_42_detail.jpg"
+        ]
+    },
 ]

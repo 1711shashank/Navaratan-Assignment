@@ -16,7 +16,8 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
                 placeholderTextColor='#8891A5'
                 placeholder="Search Products or store"
             />
-        </View>)
+        </View>
+    )
 }
 
 export default SearchBar
