@@ -57,7 +57,6 @@ const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
                 </Text>
             </TouchableOpacity>
         </View>
-
     )
 }
 
