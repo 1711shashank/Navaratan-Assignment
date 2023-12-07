@@ -4,27 +4,15 @@ import CartItem from '../components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItemFromCart } from '../redux/cartSlice';
 import { addToOrderList } from '../redux/orderHistoryListSlice';
-import { View, Text, TouchableOpacity, StyleSheet, ToastAndroid } from 'react-native'
-import { showAcknowledgementMessage } from '../utility/helperFunction';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native'
+import { calculatePaymentAmount, showAcknowledgementMessage } from '../utility/helperFunction';
 
 
 const Cart = ({ navigation }) => {
 
     const dispatch = useDispatch();
     const cartItems = useSelector((store) => store.cart.items);
-
-    const totalPrice = cartItems.reduce((total, item) => {
-
-        const { price, discountPercentage } = item.products;
-        const quantity = item.quantity;
-        const discountedPrice = (price - (price * discountPercentage / 100));
-
-        return total + (discountedPrice * quantity);
-
-    }, 0);
-
-    const totalWithoutDelivery = totalPrice.toFixed(2);
-    const totalWithDelivery = (totalPrice + 100).toFixed(2);
+    const { totalWithoutDelivery, totalWithDelivery } = calculatePaymentAmount(cartItems);
 
     const handleOrder = () => {
 
@@ -43,8 +31,7 @@ const Cart = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.cartWrapper}>
-
+        <SafeAreaView style={styles.cartWrapper}>
             <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                 <TouchableOpacity style={{ backgroundColor: '#F8F9FB', padding: 10, borderRadius: 50, marginRight: 20 }} onPress={() => navigation.goBack()}>
                     <Entypo name="chevron-small-left" size={24} color="#1E222B" />
@@ -85,7 +72,7 @@ const Cart = ({ navigation }) => {
                     </View>
                 )}
             </View>
-        </View >
+        </SafeAreaView >
     )
 }
 

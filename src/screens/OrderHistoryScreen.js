@@ -1,7 +1,6 @@
 import React from 'react'
 import { Entypo } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeProduct } from '../redux/productListSlice';
+import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native'
 import OrderHistoryList from '../components/OrderHistoryList';
 
@@ -9,11 +8,6 @@ import OrderHistoryList from '../components/OrderHistoryList';
 const OrderHistoryScreen = ({ navigation }) => {
 
     const orderHistoryList = useSelector((store) => store.orderHistoryList.items);
-
-    const dispatch = useDispatch();
-    const handleDelete = (id) => {
-        dispatch(removeProduct(id));
-    }
 
     return (
         <View style={{ flex: 1, paddingTop: 50, paddingHorizontal: 20 }}>
@@ -27,7 +21,7 @@ const OrderHistoryScreen = ({ navigation }) => {
             {
                 orderHistoryList.map((item) => (
                     <View key={item.timestamp} >
-                        <OrderHistoryList item={item} handleDelete={handleDelete} navigation={navigation} />
+                        <OrderHistoryList item={item} navigation={navigation} />
                     </View>
                 ))
             }

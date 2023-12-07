@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProductCard from '../components/ProductCard';
 import AddressInfo from '../components/AddressInfo';
@@ -14,7 +14,6 @@ const Home = ({ navigation }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filterDataBySearch, setFilterDataBySearch] = useState(productList);
     const [timer, setTimer] = useState(false);
-
 
     const searchBar = () => {
 
@@ -48,7 +47,7 @@ const Home = ({ navigation }) => {
 
     return (
 
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
 
             <View style={{ backgroundColor: '#2A4BA0', height: 250, paddingHorizontal: 20, paddingTop: 45 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
@@ -84,7 +83,7 @@ const Home = ({ navigation }) => {
 
             <MenuButtons activeTab='Home' navigation={navigation} />
 
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -3,13 +3,16 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Pressable } fro
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, reduceQuantityFromCart } from '../redux/cartSlice';
+import { calculatePrice } from '../utility/helperFunction';
 
 
 const CartItem = ({ cartItem }) => {
 
     const dispatch = useDispatch();
-    const [modalVisible, setModalVisible] = useState(true);
     const cartItems = useSelector((store) => store.cart.items);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const discountedPrice = calculatePrice(cartItem);
 
     const handleIncrement = (productData) => {
         const updatedProductData = { ...productData, size: 9 };
@@ -24,7 +27,6 @@ const CartItem = ({ cartItem }) => {
         else dispatch(reduceQuantityFromCart(productData));
     }
 
-    const discountedPrice = (cartItem?.products?.price - cartItem?.products?.price * cartItem?.products?.discountPercentage / 100).toFixed(2);
 
     return (
         <>
@@ -57,15 +59,22 @@ const CartItem = ({ cartItem }) => {
 
 
 
-            <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible) }}>
+            <Modal transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible) }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={{ fontSize: 18, marginBottom: 20 }}>Are You Sure</Text>
                         <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <TouchableOpacity style={{ width: '46%', borderRadius: 20, height: 56, backgroundColor: '#FFF', borderColor: '2A4BA0', borderWidth: 1, alignItems: 'center', justifyContent: 'center' }} onPress={() => setModalVisible(false)}>
+                            <TouchableOpacity
+                                style={[styles.modalButton, { backgroundColor: '#FFF', borderColor: '2A4BA0', borderWidth: 1 }]}
+                                onPress={() => setModalVisible(false)}>
                                 <Text>Cancel</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ width: '46%', borderRadius: 20, height: 56, backgroundColor: '#2A4BA0', alignItems: 'center', justifyContent: 'center' }} onPress={() => dispatch(reduceQuantityFromCart(cartItem.products))}>
+                            <TouchableOpacity
+                                style={[styles.modalButton, { backgroundColor: '#2A4BA0' }]}
+                                onPress={() => {
+                                    dispatch(reduceQuantityFromCart(cartItem.products));
+                                    setModalVisible(false);
+                                }}>
                                 <Text style={{ color: 'white' }}>Remove</Text>
                             </TouchableOpacity>
                         </View>
@@ -97,5 +106,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         shadowOffset: { width: 0, height: 2 },
+    },
+    modalButton: {
+        width: '46%',
+        borderRadius: 20,
+        height: 56,
+        alignItems: 'center', justifyContent: 'center'
     }
 });
