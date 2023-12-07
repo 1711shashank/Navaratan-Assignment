@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../redux/cartSlice';
 import MenuButtons from '../components/MenuButtons';
 import { FontAwesome, Entypo } from '@expo/vector-icons';
+import { clearOrderHistory } from '../redux/orderHistoryListSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -19,7 +22,11 @@ const ProfileScreen = ({ navigation }) => {
 
     const userName = role === 'admin' ? 'Admin' : 'Kumar Shashank';
 
+    const dispatch = useDispatch();
     const handleLogOut = async () => {
+
+        dispatch(clearCart());
+        dispatch(clearOrderHistory());
 
         await AsyncStorage.removeItem('role');
         navigation.navigate('LoginScreen');

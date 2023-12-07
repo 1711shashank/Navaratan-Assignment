@@ -12,9 +12,12 @@ const orderHistoryListSlice = createSlice({
             state.items.push(productData);
 
         },
+        clearOrderHistory: (state) => {
+            state.items = [];
+        }
     }
 })
 
-export const { addToOrderList, } = orderHistoryListSlice.actions;
+export const { addToOrderList, clearOrderHistory } = orderHistoryListSlice.actions;
 export default orderHistoryListSlice.reducer;
 
