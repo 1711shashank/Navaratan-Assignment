@@ -35,7 +35,6 @@ const cartSlice = createSlice({
             }
         },
         clearCart: (state) => {
-            console.log('cart slice')
             state.items = [];
         }
     }
