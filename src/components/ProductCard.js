@@ -3,6 +3,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart, removeItemFromCart } from '../redux/cartSlice';
 import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { showAcknowledgementMessage } from '../utility/helperFunction';
 
 const ProductCard = ({ productData }) => {
 
@@ -14,9 +15,11 @@ const ProductCard = ({ productData }) => {
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (data) {
             dispatch(removeItemFromCart(productData));
+            showAcknowledgementMessage('Removed from Cart Successfully');
         } else {
             const updatedProductData = { ...productData, size: 9 };
             dispatch(addItemToCart(updatedProductData));
+            showAcknowledgementMessage('Added to Cart Successfully');
         }
     }
 

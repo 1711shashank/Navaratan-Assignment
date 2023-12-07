@@ -4,11 +4,13 @@ import CartItem from '../components/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItemFromCart } from '../redux/cartSlice';
 import { addToOrderList } from '../redux/orderHistoryListSlice';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ToastAndroid } from 'react-native'
+import { showAcknowledgementMessage } from '../utility/helperFunction';
 
 
 const Cart = ({ navigation }) => {
 
+    const dispatch = useDispatch();
     const cartItems = useSelector((store) => store.cart.items);
 
     const totalPrice = cartItems.reduce((total, item) => {
@@ -24,24 +26,20 @@ const Cart = ({ navigation }) => {
     const totalWithoutDelivery = totalPrice.toFixed(2);
     const totalWithDelivery = (totalPrice + 100).toFixed(2);
 
-
-    const dispatch = useDispatch();
     const handleOrder = () => {
 
         cartItems.map((item) => {
 
             const timestamp = new Date().toISOString();
-            const updatedProducts = {
-                ...item.products,
-                timestamp: timestamp
-            };
+            const updatedProducts = { ...item.products, timestamp: timestamp };
 
             dispatch(addToOrderList(updatedProducts));
             dispatch(removeItemFromCart(item.products));
+
         });
 
+        showAcknowledgementMessage('Order Placed Successfully');
         navigation.navigate('OrderHistoryScreen');
-
     }
 
     return (

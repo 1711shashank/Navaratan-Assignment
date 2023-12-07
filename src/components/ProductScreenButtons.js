@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart, removeItemFromCart } from '../redux/cartSlice';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useEffect } from 'react';
+import { showAcknowledgementMessage } from '../utility/helperFunction'
 
 
 const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
@@ -16,9 +17,11 @@ const ProductScreenButtons = ({ productData, selectedSize, navigation }) => {
         const data = cartItems.find((item) => item.products.id === productData.id);
         if (data) {
             dispatch(removeItemFromCart(productData));
+            showAcknowledgementMessage('Removed from Cart Successfully');
         } else {
             const updatedProductData = { ...productData, size: selectedSize };
             dispatch(addItemToCart(updatedProductData));
+            showAcknowledgementMessage('Added to Cart Successfully');
         }
     }
 
