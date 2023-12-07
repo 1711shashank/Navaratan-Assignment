@@ -8,7 +8,7 @@ const ProductPrice = ({ productData }) => {
             <Text style={{ color: '#2A4BA0', fontWeight: 'bold' }}>Rs. {productData.price}</Text>
             
             <View style={{ backgroundColor: '#2A4BA0', borderRadius: 50, marginHorizontal: 12 }}>
-                <Text style={{ color: 'white', paddingHorizontal: 15, paddingVertical: 4 }}>Rs. {(productData.price * (productData.discountPercentage) / 100).toFixed(2)} OFF</Text>
+                <Text style={{ color: 'white', paddingHorizontal: 15, paddingVertical: 4 }}>{productData.discountPercentage} % OFF</Text>
             </View>
 
         </View>

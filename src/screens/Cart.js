@@ -12,10 +12,18 @@ const Cart = ({ navigation }) => {
     const cartItems = useSelector((store) => store.cart.items);
 
     const totalPrice = cartItems.reduce((total, item) => {
-        const { price } = item.products;
+
+        const { price, discountPercentage } = item.products;
         const quantity = item.quantity;
-        return total + (price * quantity);
+        const discountedPrice = (price - (price * discountPercentage / 100));
+
+        return total + (discountedPrice * quantity);
+
     }, 0);
+
+    const totalWithoutDelivery = totalPrice.toFixed(2);
+    const totalWithDelivery = (totalPrice + 100).toFixed(2);
+
 
     const dispatch = useDispatch();
     const handleOrder = () => {
@@ -58,7 +66,7 @@ const Cart = ({ navigation }) => {
 
                 <View style={styles.paymentCardRecordColumn}>
                     <Text style={{ color: '#616A7D' }}>Subtotal</Text>
-                    <Text style={{ color: '#1E222B' }}>Rs. {totalPrice}</Text>
+                    <Text style={{ color: '#1E222B' }}>Rs. {totalWithoutDelivery}</Text>
                 </View>
                 <View style={styles.paymentCardRecordColumn}>
                     <Text style={{ color: '#616A7D' }}>Delivery</Text>
@@ -66,7 +74,7 @@ const Cart = ({ navigation }) => {
                 </View>
                 <View style={styles.paymentCardRecordColumn}>
                     <Text style={{ color: '#616A7D' }}>Total</Text>
-                    <Text style={{ color: '#1E222B', fontWeight: 500 }}>Rs. {totalPrice + 100}</Text>
+                    <Text style={{ color: '#1E222B', fontWeight: 500 }}>Rs. {totalWithDelivery}</Text>
                 </View>
 
                 {cartItems.length > 0 ? (

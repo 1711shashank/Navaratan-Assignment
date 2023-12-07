@@ -18,6 +18,8 @@ const CartItem = ({ cartItem }) => {
         dispatch(reduceQuantityFromCart(productData))
     }
 
+    const discountedPrice = (cartItem?.products?.price - cartItem?.products?.price * cartItem?.products?.discountPercentage / 100).toFixed(2);
+
     return (
         <>
             <View style={{ width: '100%', paddingVertical: 20, borderBottomWidth: 0.5, borderBottomColor: '#EBEBFB', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -28,7 +30,7 @@ const CartItem = ({ cartItem }) => {
                     />
                     <View style={{ paddingLeft: 12 }}>
                         <Text style={{ fontSize: 12, width: 150, paddingBottom: 4 }}>{cartItem?.products?.title}</Text>
-                        <Text style={{ fontSize: 12 }}>Size: {cartItem?.products?.size} / Rs. {cartItem?.products?.price}</Text>
+                        <Text style={{ fontSize: 12 }}>Size: {cartItem?.products?.size} / Rs. {discountedPrice}</Text>
                     </View>
                 </View>
 
